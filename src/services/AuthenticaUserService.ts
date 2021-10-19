@@ -28,8 +28,8 @@ export default class AuthenticateUserService {
     const { data: accessTokenResponse } =
       await axios.post<IAccessTokenResponse>(url, null, {
         params: {
-          client_id: "9a9956c6039a5ffb6328",
-          client_secret: "83b36dd86b666d491c8c399e991fa3ba8f6322a7",
+          client_id: process.env.GITHUB_CLIENT_ID,
+          client_secret: process.env.GITHUB_CLIENT_SECRET,
           code,
         },
         headers: {
@@ -81,7 +81,9 @@ export default class AuthenticateUserService {
     }
     )
 
-
+    console.log(process.env.GITHUB_CLIENT_ID)
+    console.log(process.env.GITHUB_CLIENT_SECRET)
+    console.log(process.env.JWT_SECRET)
     return { token, user };
   }
 }
